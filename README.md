@@ -16,3 +16,15 @@ You can view the api documentation in swagger-ui by pointing to
 http://localhost:8080/
 
 Change default port value in application.properties
+
+
+## Example request
+
+curl -X GET \
+  http://localhost:8080/open-banking/v3.1/aisp/balances \
+  -H 'Authorization: test' \
+  -H 'x-customer-user-agent: test' \
+  -H 'x-fapi-customer-ip-address: test' \
+  -H 'x-fapi-customer-last-logged-time: Sun, 10 Sep 2017 19:43:31 UTC' \
+  -H 'x-fapi-financial-id: test' \
+  -H 'x-fapi-interaction-id: 123'
