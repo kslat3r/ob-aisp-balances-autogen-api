@@ -3,9 +3,10 @@ package com.sapient.aisp.balances.model;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -13,11 +14,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * Limit type, in a coded form.
  */
 public enum OBExternalLimitType1Code {
+  
   AVAILABLE("Available"),
-    CREDIT("Credit"),
-    EMERGENCY("Emergency"),
-    PRE_AGREED("Pre-Agreed"),
-    TEMPORARY("Temporary");
+  
+  CREDIT("Credit"),
+  
+  EMERGENCY("Emergency"),
+  
+  PRE_AGREED("Pre-Agreed"),
+  
+  TEMPORARY("Temporary");
 
   private String value;
 
@@ -32,12 +38,13 @@ public enum OBExternalLimitType1Code {
   }
 
   @JsonCreator
-  public static OBExternalLimitType1Code fromValue(String text) {
+  public static OBExternalLimitType1Code fromValue(String value) {
     for (OBExternalLimitType1Code b : OBExternalLimitType1Code.values()) {
-      if (String.valueOf(b.value).equals(text)) {
+      if (b.value.equals(value)) {
         return b;
       }
     }
-    return null;
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 }
+

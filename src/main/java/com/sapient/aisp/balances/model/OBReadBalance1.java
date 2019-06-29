@@ -5,20 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.sapient.aisp.balances.model.Links;
 import com.sapient.aisp.balances.model.Meta;
+import com.sapient.aisp.balances.model.OBReadBalance1Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * OBReadBalance1
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBReadBalance1   {
   @JsonProperty("Data")
-  private Object data = null;
+  private OBReadBalance1Data data = null;
 
   @JsonProperty("Links")
   private Links links = null;
@@ -26,7 +27,7 @@ public class OBReadBalance1   {
   @JsonProperty("Meta")
   private Meta meta = null;
 
-  public OBReadBalance1 data(Object data) {
+  public OBReadBalance1 data(OBReadBalance1Data data) {
     this.data = data;
     return this;
   }
@@ -34,15 +35,17 @@ public class OBReadBalance1   {
   /**
    * Get data
    * @return data
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
-  public Object getData() {
+  @Valid
+
+  public OBReadBalance1Data getData() {
     return data;
   }
 
-  public void setData(Object data) {
+  public void setData(OBReadBalance1Data data) {
     this.data = data;
   }
 
@@ -54,11 +57,12 @@ public class OBReadBalance1   {
   /**
    * Get links
    * @return links
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
   @Valid
+
   public Links getLinks() {
     return links;
   }
@@ -75,11 +79,12 @@ public class OBReadBalance1   {
   /**
    * Get meta
    * @return meta
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
   @Valid
+
   public Meta getMeta() {
     return meta;
   }
@@ -131,3 +136,4 @@ public class OBReadBalance1   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

@@ -7,22 +7,22 @@ import com.sapient.aisp.balances.model.OBActiveOrHistoricCurrencyAndAmount;
 import com.sapient.aisp.balances.model.OBExternalLimitType1Code;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * Set of elements used to provide details on the credit line.
  */
 @ApiModel(description = "Set of elements used to provide details on the credit line.")
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBCreditLine1   {
   @JsonProperty("Included")
-  private Boolean included = null;
+  private Boolean included;
 
   @JsonProperty("Type")
-  private OBExternalLimitType1Code type = null;
+  private OBExternalLimitType1Code type;
 
   @JsonProperty("Amount")
   private OBActiveOrHistoricCurrencyAndAmount amount = null;
@@ -35,11 +35,12 @@ public class OBCreditLine1   {
   /**
    * Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.
    * @return included
-  **/
+  */
   @ApiModelProperty(required = true, value = "Indicates whether or not the credit line is included in the balance of the account. Usage: If not present, credit line is not included in the balance amount of the account.")
   @NotNull
 
-  public Boolean isIncluded() {
+
+  public Boolean getIncluded() {
     return included;
   }
 
@@ -55,10 +56,11 @@ public class OBCreditLine1   {
   /**
    * Get type
    * @return type
-  **/
+  */
   @ApiModelProperty(value = "")
 
   @Valid
+
   public OBExternalLimitType1Code getType() {
     return type;
   }
@@ -75,10 +77,11 @@ public class OBCreditLine1   {
   /**
    * Get amount
    * @return amount
-  **/
+  */
   @ApiModelProperty(value = "")
 
   @Valid
+
   public OBActiveOrHistoricCurrencyAndAmount getAmount() {
     return amount;
   }
@@ -130,3 +133,4 @@ public class OBCreditLine1   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

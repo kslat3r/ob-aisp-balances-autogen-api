@@ -9,22 +9,22 @@ import com.sapient.aisp.balances.model.OBBalanceType1Code;
 import com.sapient.aisp.balances.model.OBCreditLine1;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * Set of elements used to define the balance details.
  */
 @ApiModel(description = "Set of elements used to define the balance details.")
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBCashBalance1   {
   @JsonProperty("AccountId")
-  private String accountId = null;
+  private String accountId;
 
   /**
    * Indicates whether the balance is a credit or a debit balance.  Usage: A zero balance is considered to be a credit balance.
@@ -47,23 +47,24 @@ public class OBCashBalance1   {
     }
 
     @JsonCreator
-    public static CreditDebitIndicatorEnum fromValue(String text) {
+    public static CreditDebitIndicatorEnum fromValue(String value) {
       for (CreditDebitIndicatorEnum b : CreditDebitIndicatorEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
+
   @JsonProperty("CreditDebitIndicator")
-  private CreditDebitIndicatorEnum creditDebitIndicator = null;
+  private CreditDebitIndicatorEnum creditDebitIndicator;
 
   @JsonProperty("Type")
-  private OBBalanceType1Code type = null;
+  private OBBalanceType1Code type;
 
   @JsonProperty("DateTime")
-  private OffsetDateTime dateTime = null;
+  private OffsetDateTime dateTime;
 
   @JsonProperty("Amount")
   private OBActiveOrHistoricCurrencyAndAmount amount = null;
@@ -78,13 +79,14 @@ public class OBCashBalance1   {
   }
 
   /**
-   * Get accountId
+   * A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.
    * @return accountId
-  **/
-  @ApiModelProperty(required = true, value = "")
+  */
+  @ApiModelProperty(required = true, value = "A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.")
   @NotNull
 
-@Size(min=1,max=40)   public String getAccountId() {
+@Size(min=1,max=40) 
+  public String getAccountId() {
     return accountId;
   }
 
@@ -100,9 +102,10 @@ public class OBCashBalance1   {
   /**
    * Indicates whether the balance is a credit or a debit balance.  Usage: A zero balance is considered to be a credit balance.
    * @return creditDebitIndicator
-  **/
+  */
   @ApiModelProperty(required = true, value = "Indicates whether the balance is a credit or a debit balance.  Usage: A zero balance is considered to be a credit balance.")
   @NotNull
+
 
   public CreditDebitIndicatorEnum getCreditDebitIndicator() {
     return creditDebitIndicator;
@@ -120,11 +123,12 @@ public class OBCashBalance1   {
   /**
    * Get type
    * @return type
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
   @Valid
+
   public OBBalanceType1Code getType() {
     return type;
   }
@@ -141,11 +145,12 @@ public class OBCashBalance1   {
   /**
    * Indicates the date (and time) of the balance. All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00
    * @return dateTime
-  **/
+  */
   @ApiModelProperty(required = true, value = "Indicates the date (and time) of the balance. All dates in the JSON payloads are represented in ISO 8601 date-time format.  All date-time fields in responses must include the timezone. An example is below: 2017-04-05T10:43:07+00:00")
   @NotNull
 
   @Valid
+
   public OffsetDateTime getDateTime() {
     return dateTime;
   }
@@ -162,11 +167,12 @@ public class OBCashBalance1   {
   /**
    * Get amount
    * @return amount
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
   @Valid
+
   public OBActiveOrHistoricCurrencyAndAmount getAmount() {
     return amount;
   }
@@ -182,7 +188,7 @@ public class OBCashBalance1   {
 
   public OBCashBalance1 addCreditLineItem(OBCreditLine1 creditLineItem) {
     if (this.creditLine == null) {
-      this.creditLine = new ArrayList<OBCreditLine1>();
+      this.creditLine = new ArrayList<>();
     }
     this.creditLine.add(creditLineItem);
     return this;
@@ -191,9 +197,11 @@ public class OBCashBalance1   {
   /**
    * Set of elements used to provide details on the credit line.
    * @return creditLine
-  **/
+  */
   @ApiModelProperty(value = "Set of elements used to provide details on the credit line.")
+
   @Valid
+
   public List<OBCreditLine1> getCreditLine() {
     return creditLine;
   }
@@ -251,3 +259,4 @@ public class OBCashBalance1   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

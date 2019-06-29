@@ -8,29 +8,29 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * An array of detail error codes, and messages, and URLs to documentation to help remediation.
  */
 @ApiModel(description = "An array of detail error codes, and messages, and URLs to documentation to help remediation.")
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBErrorResponse1   {
   @JsonProperty("Code")
-  private String code = null;
+  private String code;
 
   @JsonProperty("Id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("Message")
-  private String message = null;
+  private String message;
 
   @JsonProperty("Errors")
   @Valid
-  private List<OBError1> errors = new ArrayList<OBError1>();
+  private List<OBError1> errors = new ArrayList<>();
 
   public OBErrorResponse1 code(String code) {
     this.code = code;
@@ -40,11 +40,12 @@ public class OBErrorResponse1   {
   /**
    * High level textual error code, to help categorize the errors.
    * @return code
-  **/
+  */
   @ApiModelProperty(required = true, value = "High level textual error code, to help categorize the errors.")
   @NotNull
 
-@Size(min=1,max=40)   public String getCode() {
+@Size(min=1,max=40) 
+  public String getCode() {
     return code;
   }
 
@@ -60,10 +61,11 @@ public class OBErrorResponse1   {
   /**
    * A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
    * @return id
-  **/
+  */
   @ApiModelProperty(value = "A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.")
 
-@Size(min=1,max=40)   public String getId() {
+@Size(min=1,max=40) 
+  public String getId() {
     return id;
   }
 
@@ -79,11 +81,12 @@ public class OBErrorResponse1   {
   /**
    * Brief Error message, e.g., 'There is something wrong with the request parameters provided'
    * @return message
-  **/
+  */
   @ApiModelProperty(required = true, value = "Brief Error message, e.g., 'There is something wrong with the request parameters provided'")
   @NotNull
 
-@Size(min=1,max=500)   public String getMessage() {
+@Size(min=1,max=500) 
+  public String getMessage() {
     return message;
   }
 
@@ -104,11 +107,13 @@ public class OBErrorResponse1   {
   /**
    * Get errors
    * @return errors
-  **/
+  */
   @ApiModelProperty(required = true, value = "")
   @NotNull
+
   @Valid
-@Size(min=1)   public List<OBError1> getErrors() {
+@Size(min=1) 
+  public List<OBError1> getErrors() {
     return errors;
   }
 
@@ -161,3 +166,4 @@ public class OBErrorResponse1   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

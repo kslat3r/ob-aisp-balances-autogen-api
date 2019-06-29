@@ -3,9 +3,10 @@ package com.sapient.aisp.balances.model;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -13,19 +14,32 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * Balance type, in a coded form.
  */
 public enum OBBalanceType1Code {
+  
   CLOSINGAVAILABLE("ClosingAvailable"),
-    CLOSINGBOOKED("ClosingBooked"),
-    CLOSINGCLEARED("ClosingCleared"),
-    EXPECTED("Expected"),
-    FORWARDAVAILABLE("ForwardAvailable"),
-    INFORMATION("Information"),
-    INTERIMAVAILABLE("InterimAvailable"),
-    INTERIMBOOKED("InterimBooked"),
-    INTERIMCLEARED("InterimCleared"),
-    OPENINGAVAILABLE("OpeningAvailable"),
-    OPENINGBOOKED("OpeningBooked"),
-    OPENINGCLEARED("OpeningCleared"),
-    PREVIOUSLYCLOSEDBOOKED("PreviouslyClosedBooked");
+  
+  CLOSINGBOOKED("ClosingBooked"),
+  
+  CLOSINGCLEARED("ClosingCleared"),
+  
+  EXPECTED("Expected"),
+  
+  FORWARDAVAILABLE("ForwardAvailable"),
+  
+  INFORMATION("Information"),
+  
+  INTERIMAVAILABLE("InterimAvailable"),
+  
+  INTERIMBOOKED("InterimBooked"),
+  
+  INTERIMCLEARED("InterimCleared"),
+  
+  OPENINGAVAILABLE("OpeningAvailable"),
+  
+  OPENINGBOOKED("OpeningBooked"),
+  
+  OPENINGCLEARED("OpeningCleared"),
+  
+  PREVIOUSLYCLOSEDBOOKED("PreviouslyClosedBooked");
 
   private String value;
 
@@ -40,12 +54,13 @@ public enum OBBalanceType1Code {
   }
 
   @JsonCreator
-  public static OBBalanceType1Code fromValue(String text) {
+  public static OBBalanceType1Code fromValue(String value) {
     for (OBBalanceType1Code b : OBBalanceType1Code.values()) {
-      if (String.valueOf(b.value).equals(text)) {
+      if (b.value.equals(value)) {
         return b;
       }
     }
-    return null;
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 }
+

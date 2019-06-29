@@ -5,22 +5,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * Amount of money of the cash balance after a transaction entry is applied to the account..
  */
 @ApiModel(description = "Amount of money of the cash balance after a transaction entry is applied to the account..")
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBActiveOrHistoricCurrencyAndAmount   {
   @JsonProperty("Amount")
-  private String amount = null;
+  private String amount;
 
   @JsonProperty("Currency")
-  private String currency = null;
+  private String currency;
 
   public OBActiveOrHistoricCurrencyAndAmount amount(String amount) {
     this.amount = amount;
@@ -28,13 +28,14 @@ public class OBActiveOrHistoricCurrencyAndAmount   {
   }
 
   /**
-   * Get amount
+   * A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
    * @return amount
-  **/
-  @ApiModelProperty(required = true, value = "")
+  */
+  @ApiModelProperty(required = true, value = "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.")
   @NotNull
 
-@Pattern(regexp="^\d{1,13}\.\d{1,5}$")   public String getAmount() {
+@Pattern(regexp="^\\d{1,13}\\.\\d{1,5}$") 
+  public String getAmount() {
     return amount;
   }
 
@@ -50,11 +51,12 @@ public class OBActiveOrHistoricCurrencyAndAmount   {
   /**
    * A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".
    * @return currency
-  **/
+  */
   @ApiModelProperty(required = true, value = "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".")
   @NotNull
 
-@Pattern(regexp="^[A-Z]{3,3}$")   public String getCurrency() {
+@Pattern(regexp="^[A-Z]{3,3}$") 
+  public String getCurrency() {
     return currency;
   }
 
@@ -103,3 +105,4 @@ public class OBActiveOrHistoricCurrencyAndAmount   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

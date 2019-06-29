@@ -5,27 +5,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 
 /**
  * OBError1
  */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2019-06-29T16:58:28.625+01:00[Europe/London]")
+
 public class OBError1   {
   @JsonProperty("ErrorCode")
-  private String errorCode = null;
+  private String errorCode;
 
   @JsonProperty("Message")
-  private String message = null;
+  private String message;
 
   @JsonProperty("Path")
-  private String path = null;
+  private String path;
 
   @JsonProperty("Url")
-  private String url = null;
+  private String url;
 
   public OBError1 errorCode(String errorCode) {
     this.errorCode = errorCode;
@@ -35,11 +35,12 @@ public class OBError1   {
   /**
    * Low level textual error code, e.g., UK.OBIE.Field.Missing
    * @return errorCode
-  **/
+  */
   @ApiModelProperty(required = true, value = "Low level textual error code, e.g., UK.OBIE.Field.Missing")
   @NotNull
 
-@Size(min=1,max=128)   public String getErrorCode() {
+@Size(min=1,max=128) 
+  public String getErrorCode() {
     return errorCode;
   }
 
@@ -55,11 +56,12 @@ public class OBError1   {
   /**
    * A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBIE doesn't standardise this field
    * @return message
-  **/
+  */
   @ApiModelProperty(required = true, value = "A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future' OBIE doesn't standardise this field")
   @NotNull
 
-@Size(min=1,max=500)   public String getMessage() {
+@Size(min=1,max=500) 
+  public String getMessage() {
     return message;
   }
 
@@ -75,10 +77,11 @@ public class OBError1   {
   /**
    * Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
    * @return path
-  **/
+  */
   @ApiModelProperty(value = "Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency")
 
-@Size(min=1,max=500)   public String getPath() {
+@Size(min=1,max=500) 
+  public String getPath() {
     return path;
   }
 
@@ -94,8 +97,9 @@ public class OBError1   {
   /**
    * URL to help remediate the problem, or provide more information, or to API Reference, or help etc
    * @return url
-  **/
+  */
   @ApiModelProperty(value = "URL to help remediate the problem, or provide more information, or to API Reference, or help etc")
+
 
   public String getUrl() {
     return url;
@@ -150,3 +154,4 @@ public class OBError1   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+
